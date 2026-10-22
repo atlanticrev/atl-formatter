@@ -1,0 +1,72 @@
+{
+  "name": "@atlanticrev/atl-formatter",
+  "version": "0.1.1",
+  "private": false,
+  "description": "CLI formatter that only normalizes blank lines for JS/JSX/TS/TSX files",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atlanticrev/atl-formatter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atlanticrev/atl-formatter/issues"
+  },
+  "homepage": "https://github.com/atlanticrev/atl-formatter#readme",
+  "type": "commonjs",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "atl-formatter": "dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsx src/cli/index.ts --check",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "verify": "npm run typecheck && npm run test && npm run build",
+    "check": "npm run verify",
+    "release:patch": "npm run verify && npm version patch && npm publish",
+    "prepublishOnly": "npm run verify"
+  },
+  "keywords": [
+    "formatter",
+    "cli",
+    "jsx",
+    "tsx",
+    "typescript"
+  ],
+  "author": "Atlantic Revolution",
+  "dependencies": {
+    "@babel/parser": "^7.29.2",
+    "@babel/traverse": "^7.29.0",
+    "@babel/types": "^7.29.0",
+    "fast-glob": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/babel__traverse": "^7.28.0",
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  }
+}
